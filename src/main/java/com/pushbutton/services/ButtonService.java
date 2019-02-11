@@ -12,7 +12,6 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-import sun.net.ConnectionResetException;
 
 @Service
 public class ButtonService {
@@ -26,6 +25,7 @@ public class ButtonService {
     private ButtonRepository buttonRepository;
 
     public void clickButton(Long id) throws ArgumentNotFoundException, ConnectionException {
+        // Can be replace by firebase implementations
         // TODO check it!
         RestTemplate restTemplate = new RestTemplate();
 
