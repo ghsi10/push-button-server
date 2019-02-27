@@ -11,7 +11,7 @@ import java.util.Optional;
 @Repository
 public interface PhoneRepository extends JpaRepository<Phone, String> {
 
-    @Transactional(readOnly = true)
-    @Query("select p.token from Phone p WHERE p.device = ?1")
-    Optional<String> findTokenByDevice(String device);
+//    @Transactional(readOnly = true)
+//    @Query("select p.token from Phone p WHERE p.device = ?1")
+//    Optional<String> findTokenByDevice(String device);
 }
