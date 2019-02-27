@@ -1,6 +1,7 @@
 package com.pushbutton.models;
 
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -11,35 +12,41 @@ import javax.persistence.Table;
 public class Phone {
 
     @Id
-    private String device;
+    private String phoneNumber;
+    @Column(unique = true)
     private String token;
+    private String description;
 
     private Phone() {
     }
 
-    private Phone(String device, String token) {
-        this.device = device;
+    private Phone(String phoneNumber, String token, String description) {
+        this.phoneNumber = phoneNumber;
         this.token = token;
+        this.description = description;
     }
 
-    public static Phone of(String device, String token) {
-        return new Phone(device, token);
+    public static Phone of(String phoneNumber, String token, String description) {
+        return new Phone(phoneNumber, token, description);
     }
 
-    public String getDevice() {
-        return device;
+    public static Phone of(String phoneNumber, String token) {
+        return of(phoneNumber, token, null);
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
     public String getToken() {
         return token;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Phone phone = (Phone) o;
-        return device.equals(phone.device) && token.equals(phone.token);
+    public String getDescription() {
+        return description;
     }
 
+    public void setDescription(String description) {
+        this.description = description;
+    }
 }

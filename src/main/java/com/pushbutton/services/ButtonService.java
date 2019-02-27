@@ -2,7 +2,7 @@ package com.pushbutton.services;
 
 import com.pushbutton.Exceptions.ArgumentNotFoundException;
 import com.pushbutton.Exceptions.ConnectionException;
-import com.pushbutton.models.Button;
+import com.pushbutton.models.SourceDevice;
 import com.pushbutton.repositories.ButtonRepository;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +29,7 @@ public class ButtonService {
         // TODO check it!
         RestTemplate restTemplate = new RestTemplate();
 
-        Button button = buttonRepository.findById(id).orElseThrow(ArgumentNotFoundException::new);
+        SourceDevice button = buttonRepository.findById(id).orElseThrow(ArgumentNotFoundException::new);
 
         HttpHeaders httpHeaders = new HttpHeaders();
         httpHeaders.set("Authorization", "key=" + firebaseKey);
