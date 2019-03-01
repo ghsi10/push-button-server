@@ -1,7 +1,6 @@
 package com.pushbutton.controllers;
 
 import com.pushbutton.Exceptions.ArgumentNotFoundException;
-import com.pushbutton.Exceptions.ConnectionException;
 import com.pushbutton.services.SourceDeviceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,7 +17,7 @@ public class SourceDeviceController {
     private SourceDeviceService sourceDeviceService;
 
     @PostMapping("/click/{id}")
-    public ResponseEntity<Void> clickButton(@PathVariable String id) throws ConnectionException, ArgumentNotFoundException {
+    public ResponseEntity<Void> clickButton(@PathVariable String id) throws ArgumentNotFoundException {
         sourceDeviceService.click(id);
         return ResponseEntity.ok().build();
     }
@@ -26,10 +25,5 @@ public class SourceDeviceController {
     @ExceptionHandler(ArgumentNotFoundException.class)
     public ResponseEntity<Void> ArgumentNotFoundExceptionHandler() {
         return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).build();
-    }
-
-    @ExceptionHandler(ConnectionException.class)
-    public ResponseEntity<Void> ConnectionExceptionHandler() {
-        return ResponseEntity.status(HttpStatus.REQUEST_TIMEOUT).build();
     }
 }

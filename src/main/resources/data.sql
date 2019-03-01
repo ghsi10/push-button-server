@@ -9,7 +9,7 @@ INSERT INTO source_types(type) VALUES ('source4');
 INSERT INTO source_devices(id,message_id,source_type_id,description) VALUES (1,1,2,'description1');
 INSERT INTO source_devices(id,message_id,source_type_id,description) VALUES (2,2,1,'description2');
 
-INSERT INTO phones(phone_number,token,description) VALUES (054,'d6N-DEe0AuQ:APA91bGZCEIHXpHaRt2S8ZcM5Q5cAz0WzWUMzpZlZ0AQn6SJmCBwra7rDjW8UfjMxIPVCN4NqZckC1Wur3FcA9_DC4iOdblYPls3LPFm5np80rFMgaxiSk_rahX2RddYDuV4btWD0Oyl','description1');
+INSERT INTO phones(phone_number,token) VALUES ('054','d6N-DEe0AuQ:APA91bGZCEIHXpHaRt2S8ZcM5Q5cAz0WzWUMzpZlZ0AQn6SJmCBwra7rDjW8UfjMxIPVCN4NqZckC1Wur3FcA9_DC4iOdblYPls3LPFm5np80rFMgaxiSk_rahX2RddYDuV4btWD0Oyl');
 
-INSERT INTO source_to_mobile(source_device_id,phones_phone_number) VALUES (1,054);
+INSERT INTO source_to_mobile(source_device_id,phones_phone_number) VALUES (1,'054');
 

@@ -1,4 +1,17 @@
 package com.pushbutton.services;
 
+import com.pushbutton.models.Phone;
+import com.pushbutton.repositories.PhoneRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
 public class PhoneService {
+
+    @Autowired
+    private PhoneRepository phoneRepository;
+
+    public void register(Phone phone) {
+        phoneRepository.save(phone);
+    }
 }

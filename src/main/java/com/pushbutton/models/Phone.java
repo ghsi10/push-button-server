@@ -15,23 +15,17 @@ public class Phone {
     private String phoneNumber;
     @Column(unique = true)
     private String token;
-    private String description;
 
     private Phone() {
     }
 
-    private Phone(String phoneNumber, String token, String description) {
+    private Phone(String phoneNumber, String token) {
         this.phoneNumber = phoneNumber;
         this.token = token;
-        this.description = description;
-    }
-
-    public static Phone of(String phoneNumber, String token, String description) {
-        return new Phone(phoneNumber, token, description);
     }
 
     public static Phone of(String phoneNumber, String token) {
-        return of(phoneNumber, token, null);
+        return new Phone(phoneNumber, token);
     }
 
     public String getPhoneNumber() {
@@ -42,11 +36,4 @@ public class Phone {
         return token;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
 }
