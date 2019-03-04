@@ -12,6 +12,7 @@ public class PhoneService {
     private PhoneRepository phoneRepository;
 
     public void register(Phone phone) {
-        phoneRepository.save(phone);
+        if(!phoneRepository.findById(phone.getToken()).isPresent())
+            phoneRepository.save(phone);
     }
 }

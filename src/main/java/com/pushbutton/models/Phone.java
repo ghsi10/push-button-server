@@ -12,20 +12,23 @@ import javax.persistence.Table;
 public class Phone {
 
     @Id
-    private String phoneNumber;
-    @Column(unique = true)
     private String token;
+    @Column
+    private String phoneNumber;
+    @Column
+    private String deviceName;
 
     private Phone() {
     }
 
-    private Phone(String phoneNumber, String token) {
+    private Phone(String phoneNumber, String token, String deviceName) {
         this.phoneNumber = phoneNumber;
         this.token = token;
+        this.deviceName = deviceName;
     }
 
-    public static Phone of(String phoneNumber, String token) {
-        return new Phone(phoneNumber, token);
+    public static Phone of(String phoneNumber, String token, String deviceName) {
+        return new Phone(phoneNumber, token,deviceName);
     }
 
     public String getPhoneNumber() {
@@ -34,6 +37,10 @@ public class Phone {
 
     public String getToken() {
         return token;
+    }
+
+    public String getDeviceName() {
+        return deviceName;
     }
 
 }
