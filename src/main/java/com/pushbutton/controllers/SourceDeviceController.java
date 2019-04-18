@@ -4,26 +4,25 @@ import com.pushbutton.Exceptions.ArgumentNotFoundException;
 import com.pushbutton.services.SourceDeviceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class SourceDeviceController {
 
+    private final SourceDeviceService sourceDeviceService;
+
     @Autowired
-    private SourceDeviceService sourceDeviceService;
+    public SourceDeviceController(SourceDeviceService sourceDeviceService) {
+        this.sourceDeviceService = sourceDeviceService;
+    }
 
     @PostMapping("/click/{id}")
-    public ResponseEntity<Void> clickButton(@PathVariable String id) throws ArgumentNotFoundException {
+    public void clickButton(@PathVariable String id) throws ArgumentNotFoundException {
         sourceDeviceService.click(id);
-        return ResponseEntity.ok().build();
     }
 
     @ExceptionHandler(ArgumentNotFoundException.class)
-    public ResponseEntity<Void> ArgumentNotFoundExceptionHandler() {
-        return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).build();
+    @ResponseStatus(HttpStatus.EXPECTATION_FAILED)
+    public void ArgumentNotFoundExceptionHandler() {
     }
 }

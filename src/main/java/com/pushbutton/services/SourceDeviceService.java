@@ -31,11 +31,15 @@ public class SourceDeviceService {
     @Value("${firebase.url}")
     String firebaseUrl;
 
-    @Autowired
-    private SourceDeviceRepository sourceDeviceRepository;
+    private final SourceDeviceRepository sourceDeviceRepository;
 
     private final Logger logger = LoggerFactory.getLogger(getClass());
     private final int NO_AUDIO = -1;
+
+    @Autowired
+    public SourceDeviceService(SourceDeviceRepository sourceDeviceRepository) {
+        this.sourceDeviceRepository = sourceDeviceRepository;
+    }
 
     public void click(String id) throws ArgumentNotFoundException {
         SourceDevice sourceDevice = sourceDeviceRepository.findById(id).orElseThrow(ArgumentNotFoundException::new);

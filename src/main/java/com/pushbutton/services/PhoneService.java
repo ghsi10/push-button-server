@@ -8,11 +8,15 @@ import org.springframework.stereotype.Service;
 @Service
 public class PhoneService {
 
+    private final PhoneRepository phoneRepository;
+
     @Autowired
-    private PhoneRepository phoneRepository;
+    public PhoneService(PhoneRepository phoneRepository) {
+        this.phoneRepository = phoneRepository;
+    }
 
     public void register(Phone phone) {
-        if(!phoneRepository.findById(phone.getToken()).isPresent())
+        if (!phoneRepository.findById(phone.getToken()).isPresent())
             phoneRepository.save(phone);
     }
 }

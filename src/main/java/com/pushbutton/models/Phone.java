@@ -28,7 +28,7 @@ public class Phone {
     }
 
     public static Phone of(String phoneNumber, String token, String deviceName) {
-        return new Phone(phoneNumber, token,deviceName);
+        return new Phone(phoneNumber, token, deviceName);
     }
 
     public String getPhoneNumber() {
