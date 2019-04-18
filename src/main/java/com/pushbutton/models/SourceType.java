@@ -14,12 +14,17 @@ public class SourceType {
     private SourceType() {
     }
 
-    private SourceType(String type) {
+    private SourceType(Integer id, String type) {
+        this.id = id;
         this.type = type;
     }
 
     public static SourceType of(String type) {
-        return new SourceType(type);
+        return new SourceType(null, type);
+    }
+
+    public static SourceType of(Integer id) {
+        return new SourceType(id, null);
     }
 
     public Integer getId() {

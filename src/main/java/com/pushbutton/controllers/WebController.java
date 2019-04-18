@@ -1,7 +1,8 @@
 package com.pushbutton.controllers;
 
-import com.google.gson.Gson;
+import com.pushbutton.models.Message;
 import com.pushbutton.models.SourceDevice;
+import com.pushbutton.models.SourceType;
 import com.pushbutton.services.WebService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -31,22 +32,23 @@ public class WebController {
     }
 
     @PostMapping("/updateSource")
-    public void updateSource(@RequestBody String requestJson) {
-        webService.updateSource(requestJsonToMap(requestJson));
+    public void updateSource(@RequestBody SourceDevice sourceDevice) {
+        webService.updateSource(sourceDevice);
     }
 
     @PostMapping("/deleteSource")
-    public void deleteSource(@RequestBody String requestJson) {
-        webService.deleteSource(requestJsonToMap(requestJson));
+    public void deleteSource(@RequestBody SourceDevice sourceDevice) {
+        webService.deleteSource(sourceDevice);
     }
 
-    @PostMapping("/addSource")
-    public void addSource(@RequestBody String requestJson) {
-        webService.addSource(requestJsonToMap(requestJson));
+
+    @PostMapping("/addMessage")
+    private void addMessage(@RequestBody Message message) {
+        webService.addMessage(message);
     }
 
-    private Map requestJsonToMap(String requestJson) {
-        Gson gson = new Gson();
-        return gson.fromJson(requestJson, Map.class);
+    @PostMapping("/addSourceType")
+    private void addSourceType(@RequestBody SourceType sourceType) {
+        webService.addSourceType(sourceType);
     }
 }

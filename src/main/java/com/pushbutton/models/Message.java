@@ -15,17 +15,22 @@ public class Message {
     private Message() {
     }
 
-    private Message(String content, Boolean audio) {
+    private Message(Integer id, String content, Boolean audio) {
+        this.id = id;
         this.content = content;
         this.audio = audio;
     }
 
     public static Message of(String content, Boolean audio) {
-        return new Message(content, audio);
+        return new Message(null, content, audio);
+    }
+
+    public static Message of(Integer id) {
+        return new Message(id, null, null);
     }
 
     public static Message of(String content) {
-        return new Message(content, false);
+        return new Message(null, content, false);
     }
 
     public Integer getId() {

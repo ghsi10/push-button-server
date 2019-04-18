@@ -37,24 +37,20 @@ public class WebService {
         return sourceDeviceRepository.findById(id);
     }
 
-    public void updateSource(Map request) {
-        Optional<SourceDevice> source = sourceDeviceRepository.findById((String) request.get("sourceId"));
-        SourceDevice sourceDevice = source.get();
-        sourceDevice.setDescription((String) request.get("description"));
-        Message message = messageRepository.findById(((Double) request.get("messageId")).intValue()).get();
-        sourceDevice.setMessage(message);
-        SourceType type = sourceTypeRepository.findById(((Double) request.get("sourceTypeId")).intValue()).get();
-        sourceDevice.setSourceType(type);
+    public void updateSource(SourceDevice sourceDevice) {
         sourceDeviceRepository.save(sourceDevice);
-    }
-
-    public void deleteSource(Map request) {
-        String sourceId = (String) request.get("sourceId");
-        sourceDeviceRepository.deleteById(sourceId);
-    }
-
-    public void addSource(Map request) {
 
     }
 
+    public void deleteSource(SourceDevice sourceDevice) {
+        sourceDeviceRepository.delete(sourceDevice);
+    }
+
+    public void addMessage(Message message) {
+        messageRepository.save(message);
+    }
+
+    public void addSourceType(SourceType sourceType) {
+        sourceTypeRepository.save(sourceType);
+    }
 }
