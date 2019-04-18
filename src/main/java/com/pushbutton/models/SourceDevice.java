@@ -22,7 +22,7 @@ public class SourceDevice {
 
     private SourceDevice(String id, SourceType sourceType, Message message, String description) {
         this.id = id;
-        sourceType = sourceType;
+        this. sourceType = sourceType;
         this.message = message;
         this.description = description;
     }
@@ -49,6 +49,10 @@ public class SourceDevice {
 
     public SourceType getSourceType() {
         return sourceType;
+    }
+
+    public void setSourceType(SourceType sourceType) {
+        this.sourceType = sourceType;
     }
 
     public Message getMessage() {
